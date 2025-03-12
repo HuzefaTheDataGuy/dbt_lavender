@@ -1,8 +1,3 @@
--- HINT: use group by 
-
-SELECT * FROM prep_flights
-SELECT * FROM prep_airports
-
 WITH flight_route_stats AS (
     SELECT origin,
            dest,

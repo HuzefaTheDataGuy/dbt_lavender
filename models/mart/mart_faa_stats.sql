@@ -16,7 +16,7 @@ WITH flight_route_stats AS (
            MIN(arr_delay_interval) AS min_arr_interval,
            sum(cancelled) AS total_canceled,
            sum(diverted) AS total_diverted
-    FROM {{ref(prep_flights)}}
+    FROM {{ref('prep_flights')}}
     GROUP BY (origin, dest)
 )
 SELECT o.city AS origin_city,
@@ -27,7 +27,7 @@ SELECT o.city AS origin_city,
        d.country AS dest_country,
        *
 from flight_route_stats f
-LEFT JOIN {{ref(prep_airports)}} o
+LEFT JOIN {{ref('prep_airports')}} o
     ON f.origin = o.faa
-LEFT JOIN {{ref(prep_airports)}} d
+LEFT JOIN {{ref('prep_airports')}} d
     ON f.dest = d.faa
